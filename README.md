@@ -4,6 +4,8 @@
   ## Description
 
   Lets Tech About it is a blog for developers to contribute posts and comment on other developer's posts.
+  ![image](https://user-images.githubusercontent.com/101753839/181663564-b84ad164-2785-4b4a-bf57-d1e9953dd94c.png)
+
 
   ## Table of Contents
 
