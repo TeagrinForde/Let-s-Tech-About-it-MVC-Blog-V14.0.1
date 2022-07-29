@@ -1,0 +1,26 @@
+.container {
+  padding-top: 150px;
+  text-overflow: ellipsis;
+}
+
+.blog_top {
+  background-color: rgba(0, 0, 0, 0.827);
+  color: lightgrey;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.blog_bottom {
+  background-color: lightgray;
+}
+
+.blog_title {
+  display: flex;
+  justify-content: left;
+}
+
+.user_time {
+  display: flex;
+  justify-content: right;
+}
