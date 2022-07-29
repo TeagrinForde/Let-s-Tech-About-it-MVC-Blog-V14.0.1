@@ -4,7 +4,8 @@
   ## Description
 
   Lets Tech About it is a blog for developers to contribute posts and comment on other developer's posts.
-  
+  ![image](https://user-images.githubusercontent.com/101753839/181663564-b84ad164-2785-4b4a-bf57-d1e9953dd94c.png)
+
 
   ## Table of Contents
 
@@ -27,7 +28,7 @@
 
   ## Usage
 
-  Once dependencies and database is installed, run ```node server.js``` in the terminal and click on the link provided. You can also visit the site directly by using the link: 
+  Once dependencies and database is installed, run ```node server.js``` in the terminal and click on the link provided. You can also visit the site directly by using the link:  https://teagrinforde.github.io/Lets-Tech-About-it-MVC-Blog-V14.0.1/
 
   ## Contribution Guidelines
 
