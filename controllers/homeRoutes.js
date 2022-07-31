@@ -1,15 +1,17 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { User, Post } = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/', withAuth, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const userData = await User.findAll({
+      include: [{ model: Post}],
       attributes: { exclude: ['password'] },
-      order: [['name', 'ASC']], //what is ASC?
+      order: [['username', 'ASC']], 
     });
 
     const users = userData.map((blog) => blog.get({ plain: true }));
+    console.log(users);
     res.render('homepage', {
       users,
       loggedIn: req.session.loggedIn,
@@ -27,5 +29,8 @@ router.get('/login', (req, res) => {
   }
   res.render('login');
 });
+
+// Dashboard route
+
 
 module.exports = router;
