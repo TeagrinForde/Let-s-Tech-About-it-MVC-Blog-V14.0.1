@@ -24,11 +24,11 @@ Post.init(
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
-    username: {
+    user_id: {
         type: DataTypes.INTEGER,
         references: {
         model: 'user',
-        key: 'username',
+        key: 'id',
         },
     },    
   },
@@ -36,7 +36,7 @@ Post.init(
     sequelize,
     timestamps: false,
     freezeTableName: true,
-    underscored: true,
+    underscored: false,
     modelName: 'post',
   }
 );

@@ -1,0 +1,12 @@
+[
+    {
+        "postTitle": "Title Number One",
+        "post": "Let's blog it up!",
+        "user_id": 1
+    },
+    {
+        "postTitle": "Title Number Two",
+        "post": "Let's blog it up AGAIN!",
+        "user_id": 2
+    }
+]
