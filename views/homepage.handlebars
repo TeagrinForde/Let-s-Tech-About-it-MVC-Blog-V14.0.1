@@ -1,15 +1,15 @@
 {{#each posts as |post|}}
 
-<div class="row align-center mb-5 ">
+<div class="row align-center mb-5">
 
   <div class="col-md-12 blog_top">
-    <h3 class="blog_title">
+    <h3 class="blogTitle">
       <a href="/post/{{post.id}}"> {{postTitle}} </a></h3>
 
     <p class="user_time">Posted by {{post.user.username}} on {{current_date project.postDate}}</p>
   </div>
 
-  <div class="col-md-12 blog_bottom">
+  <div class="col-md-12 blogContent">
     <p>{{post.post}}</p>
   </div>
 </div>
