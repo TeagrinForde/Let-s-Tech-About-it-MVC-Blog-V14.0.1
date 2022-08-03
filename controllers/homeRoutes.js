@@ -39,4 +39,13 @@ router.get('/partials/dashboard', (req, res) => {
   res.render('post');
 });
 
+//Comment route
+router.get('/partials/comment', (req, res) => {
+  if (req.session.comment) {
+    res.redirect('/');
+    return;
+  }
+  res.render('comment');
+});
+
 module.exports = router;
