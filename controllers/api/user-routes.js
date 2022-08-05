@@ -21,9 +21,13 @@ router.post("/", async (req, res) => {
 });
 
 // Login
-router.post("/login/:id", async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
-    const dbUserData = await User.findByPk(req.params.id);
+    const dbUserData = await User.findOne({
+      where: {
+        email: req.body.email
+      }
+    });
 
     if (!dbUserData) {
       res
@@ -41,7 +45,7 @@ router.post("/login/:id", async (req, res) => {
     }
 
     req.session.save(() => {
-      req.session.user_id = userData.id;
+      req.session.user_id = dbUserData.id;
       req.session.loggedIn = true;
 
       res.status(200).json({ user: dbUserData, message: "You are logged in!" });

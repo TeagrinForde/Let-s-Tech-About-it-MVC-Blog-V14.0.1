@@ -3,7 +3,7 @@ const { Post } = require('../../models');
 
 //CREATE a new post
 router.post('/', async (req, res) => {
-    console.log(req.body);
+
     try {
         const dbBlogs = await Post.create({
             postTitle: req.body.postTitle,
@@ -21,7 +21,5 @@ router.post('/', async (req, res) => {
         res.status(500).json(err);
     }
 });
-
-module.exports = router;
 
 module.exports = router;
