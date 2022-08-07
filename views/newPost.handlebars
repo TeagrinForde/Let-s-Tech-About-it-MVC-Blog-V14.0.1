@@ -1,10 +1,32 @@
-<div class="row" id="posts">
-    <div class="row blogTitle">
-        <input class="form-control form-control-lg" type="text" placeholder="Blog Title">
+<div class="row">
+    <div class="row" id="newPostForm">
+        <div class="row blogTitle">
+            <input class="form-control form-control-lg" type="text" placeholder="Blog Title" id="blogTitle">
+        </div>
+
+        <div class="row blogContent">
+            <input class="form-control form-control-sm" type="text" placeholder="Blog Content" id="blogContent">
+        </div>
+        <button type="button" class="btn btn-dark rePostBlog">Post Blog</button>
     </div>
-    
-    <div class="row blogContent">
-        <input class="form-control form-control-sm" type="text" placeholder="Blog Content">
+
+    {{#if posts.length}}
+    <div class="col-md-6 postList">
+        <h4>My Blogs:</h4>
+
+        {{#each posts as |post|}}
+        <div class="row mb-2">
+            <div class="col-md-8">
+                <h5><a href="/h5ost/{{post.id}}">{{post.title}}</a></h5>
+            </div>
+
+            <div class="col-md-4">
+                <button class="btn btn-sm btn-danger" data-id="{{post.id}}">DELETE</button>
+            </div>
+        </div>
+        {{/each}}
     </div>
-    <button type="button" class="btn btn-dark rePostBlog">Post Blog</button>
+    {{/if}}
 </div>
+
+<script src="../public/js/post.js"></script>
