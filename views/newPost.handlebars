@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="row" id="newPostForm">
+    <div class="form newPostForm" id="newPostForm">
         <div class="row blogTitle">
             <input class="form-control form-control-lg" type="text" placeholder="Blog Title" id="blogTitle">
         </div>
@@ -17,7 +17,7 @@
         {{#each posts as |post|}}
         <div class="row mb-2">
             <div class="col-md-8">
-                <h5><a href="/h5ost/{{post.id}}">{{post.title}}</a></h5>
+                <h5><a href="/post/{{post.id}}">{{post.title}}</a></h5>
             </div>
 
             <div class="col-md-4">
@@ -29,4 +29,4 @@
     {{/if}}
 </div>
 
-<script src="../public/js/post.js"></script>
+<script src="/js/post.js"></script>

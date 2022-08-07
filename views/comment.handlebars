@@ -1,16 +1,31 @@
-{{post.postTitle}}
-
-
 <div class="row">
-    <div class="row blogContent">
-        <textarea class="form-control form-control-sm" type="text" placeholder="Add a Comment"></textarea>
+    {{!-- <h2 class="row postTitle">{{post.postTitle}}</h2> --}}
+
+    <div class="form newCommentForm" id="newCommentForm">
+        <div class="row commentContent">
+            <input class="form-control form-control-lg" type="text" placeholder="Add comment" id="commentContent">
+        </div>
+        <button type="button" class="btn btn-dark rePostBlog">Post Comment</button>
     </div>
-    <button type="button" class="btn btn-dark rePostBlog">Post Comment</button>
+
+    {{#if comments.length}}
+    <div class="col-md-6 commentList">
+        {{#each comments as |comment|}}
+        <div class="row">
+            <h5 class="commentTitle">Comment by {{comment.user_id.username}} on {{comment.commentDate}}. </h5>
+        </div>
+
+        <div class="row">
+            <p class="commentContent">{{comment.comment}}</p>
+        </div>
+
+        <div class="col-md-4">
+            <button class="btn btn-sm btn-danger" data-id="{{comment.id}}">DELETE</button>
+        </div>
+        {{/each}}
+    </div>
+    {{/if}}
+
 </div>
-
-{{#each comments as |comment|}}
-<p class="comment">Comment by {{comment.post.user.username}} </p>
-{{/each}}
-
 
 <script src="/js/comment.js"></script>

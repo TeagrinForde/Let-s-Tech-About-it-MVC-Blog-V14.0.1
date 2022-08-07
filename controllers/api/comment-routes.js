@@ -3,7 +3,7 @@ const { Comment } = require('../../models');
 
 //CREATE a new comment
 router.post('/', async (req, res) => {
-    console.log(req.body);
+
     try {
         const dbBlogs = await Comment.create({
             comment: req.body.comment,
