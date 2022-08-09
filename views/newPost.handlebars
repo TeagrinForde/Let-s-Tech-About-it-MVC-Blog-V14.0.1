@@ -15,7 +15,7 @@
         <h4>My Blogs:</h4>
 
         {{#each posts as |post|}}
-        <div class="row mb-2">
+        <div class="row mb-2" id="postList">
             <div class="col-md-8">
                 <h5><a href="/post/{{post.id}}">{{post.title}}</a></h5>
             </div>
@@ -23,6 +23,10 @@
             <div class="col-md-4">
                 <button class="btn btn-sm btn-danger" data-id="{{post.id}}">DELETE</button>
             </div>
+        </div>
+
+        <div class="row mb-2">
+            <p> {{post.post}} </p>
         </div>
         {{/each}}
     </div>

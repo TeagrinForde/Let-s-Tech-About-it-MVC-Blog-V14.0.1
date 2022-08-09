@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const { Post } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 //CREATE a new post
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
 
     try {
         const dbBlogs = await Post.create({
@@ -18,6 +19,38 @@ router.post('/', async (req, res) => {
         });
     } catch (err) {
         console.log(err);
+        res.status(500).json(err);
+    }
+});
+
+//Update existing post
+router.put('/:id', withAuth, async (req, res) => {
+    Post.update(req.body, {
+        where: {
+            id: req.params.id
+        }
+    }).then((post) => {
+        res.json(post)
+    }).catch((err) => {
+        res.json(err)
+    })
+});
+
+//DELETE a new post
+router.delete('/:id', withAuth, async (req, res) => {
+    try {
+        const postData = await Post.destroy({
+            where: {
+                id: req.params.id,
+                user_id: req.session.user_id,
+            },
+        });
+        if (!postData) {
+            res.status(404).json({ message: 'Post not found.'});
+            return;
+        }
+        res.status(200).json(postData);
+    } catch (err) {
         res.status(500).json(err);
     }
 });

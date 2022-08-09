@@ -12,15 +12,21 @@ router.get("/post/:id", async (req, res) => {
           attributes: ["username"],
         },
         {
-          model: Comment
+          model: Comment,
+          attributes: ["comment", "commentDate"], //Need these attributes?
         },
       ],
     });
 
     const post = postData.get({ plain: true });
-    console.log(post);
+
+    res.render('post', {
+      ...post,
+      loggedIn: req.session.loggedIn
+    });
+
     res.render("comment", {
-      post,
+      ...comment, //Should this be post?
       loggedIn: req.session.loggedIn,
     });
   } catch (err) {
@@ -28,12 +34,21 @@ router.get("/post/:id", async (req, res) => {
   }
 });
 
-
+//New Post route
 router.get("/post", async (req, res) => {
   res.render("newPost");
 });
 
-//Displays post in descending order by date posted
+//New Comment route
+router.get("/comment", (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect("/");
+    return;
+  }
+  res.render("comment");
+});
+
+//Displays posts in descending order by date posted on homepage
 router.get("/", async (req, res) => {
   try {
     const postData = await Post.findAll({
@@ -47,7 +62,7 @@ router.get("/", async (req, res) => {
     });
 
     const posts = postData.map((post) => post.get({ plain: true }));
-    console.log(posts);
+
     res.render("homepage", {
       posts,
       loggedIn: req.session.loggedIn,
@@ -60,28 +75,38 @@ router.get("/", async (req, res) => {
 // Login route
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect("/");
+    res.redirect("/dashboard");
     return;
   }
   res.render("login");
 });
 
 // Dashboard route must be logged in
-router.get("/dashboard", withAuth, (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect("/login");
-    return;
-  }
-  res.render("post");
-});
+router.get("/dashboard", withAuth, async (req, res) => {
+  try {
+    const userPosts = await Post.findAll({
+      where: {
+        user_id: req.session.user_id
+      },
+      include: [
+        {
+          model: User,
+          attributes: ['username']
+        }
+      ]
+    });
 
-//Comment route
-router.get("/comment", (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect("/");
-    return;
+    const user = userPosts.map((post) => post.get({ plain: true }));
+
+    res.render('dashboard', {
+      user,
+      loggedIn: true
+    });
+
+  } catch (err) {
+
+    res.status(500).json(err);
   }
-  res.render("comment");
 });
 
 module.exports = router;

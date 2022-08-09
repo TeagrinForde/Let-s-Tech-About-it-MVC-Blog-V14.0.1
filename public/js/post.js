@@ -5,7 +5,7 @@ const newPostForm = async (event) => {
     const content = document.querySelector('#blogContent').value.trim();
 
     if(title && content) {
-        const response = await fetch(`/api/posts`, {
+        const response = await fetch(`/api/posts/`, {
             method: 'POST',
             body: JSON.stringify({title, content}),
             headers: {
@@ -14,12 +14,36 @@ const newPostForm = async (event) => {
         });
 
         if(response.ok) {
-            document.location.replace('/profile');
+            document.location.replace('/');
         } else {
             alert('Failed to post blog.');
         }
     }
 };
+
+const editPost = async (event) => {
+    event.preventDefault();
+
+    const postId = event.target.getAttribute('user_id');
+    const postTitle = document.getElementById('postTitle').value;
+    const postContent = document.getElementById('post').value;
+
+    if(postTitle && postContent) {
+        const response = await fetch(`/api/posts/${postId}`, {
+            method: 'PUT',
+            body: JSON.stringify({postTitle, postContent}),
+            headers: {
+                'Content-type': 'application/json'
+            }
+        })
+
+        if(response.ok) {
+            document.location.replace('/')
+        } else {
+            alert('Unable to update post at this time.')
+        }
+    }
+}
 
 const deletePostForm = async (event) => {
     if (event.target.hasAttribute('dataId')) {
@@ -30,7 +54,7 @@ const deletePostForm = async (event) => {
         });
 
         if(response.ok) {
-            document.location.replace('/profile');
+            document.location.replace('/dashboard');
         } else {
             alert('Failed to delete post.');
         }
