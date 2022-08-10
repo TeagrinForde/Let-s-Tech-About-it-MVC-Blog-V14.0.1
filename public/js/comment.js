@@ -1,3 +1,4 @@
+//CREATE a new comment
 const newCommentForm = async (event) => {
     event.preventDefault();
 
@@ -19,6 +20,7 @@ const newCommentForm = async (event) => {
         }
     }
 };
+
 
 // const deleteCommentForm = async (event) => {
 //     if(event.target.hasAttribute('dataId')) {

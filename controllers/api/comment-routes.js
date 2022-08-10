@@ -3,10 +3,10 @@ const { Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 //CREATE a new comment
-router.post('/', async (req, res) => {
+router.post('/', withAuth, (req, res) => {
 
     try {
-        const dbBlogs = await Comment.create({
+        const dbBlogs = Comment.create({
             comment: req.body.comment,
             commentDate: req.body.commentDate,
             username: req.body.username,
@@ -20,6 +20,17 @@ router.post('/', async (req, res) => {
         console.log(err);
         res.status(500).json(err);
     }
+});
+
+//UPDATE a new comment
+router.put('/:id', withAuth, (req, res) => {
+    Comment.update(req.body, {
+        where: {
+            id: req.params.id
+        }
+    });
+
+    res.status(200).json(updated)
 });
 
 //DELETE a new comment

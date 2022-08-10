@@ -1,13 +1,15 @@
 const newPostForm = async (event) => {
     event.preventDefault();
 
-    const title = document.querySelector('#blogTitle').value.trim();
-    const content = document.querySelector('#blogContent').value.trim();
+    const postTitle = document.querySelector('#blogTitle').value.trim();
+    const post = document.querySelector('#blogContent').value.trim();
 
-    if(title && content) {
-        const response = await fetch(`/api/posts/`, {
+    alert(postTitle + post)
+
+    if(postTitle && post) {
+        const response = await fetch(`/api/post`, {
             method: 'POST',
-            body: JSON.stringify({title, content}),
+            body: JSON.stringify({postTitle, post}),
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -29,7 +31,7 @@ const editPost = async (event) => {
     const postContent = document.getElementById('post').value;
 
     if(postTitle && postContent) {
-        const response = await fetch(`/api/posts/${postId}`, {
+        const response = await fetch(`/api/post/${postId}`, {
             method: 'PUT',
             body: JSON.stringify({postTitle, postContent}),
             headers: {
@@ -49,7 +51,7 @@ const deletePostForm = async (event) => {
     if (event.target.hasAttribute('dataId')) {
         const id = event.target.getAttribute('dataId');
 
-        const response = await fetch(`/api/posts/${id}`, {
+        const response = await fetch(`/api/post/${id}`, {
             method: 'DELETE',
         });
 
@@ -65,6 +67,6 @@ document
   .querySelector('.newPostForm')
   .addEventListener('submit', newPostForm);
 
-document
-  .querySelector('.postList')
-  .addEventListener('click', deletePostForm);
+// document
+//   .querySelector('.postList')
+//   .addEventListener('click', deletePostForm);
