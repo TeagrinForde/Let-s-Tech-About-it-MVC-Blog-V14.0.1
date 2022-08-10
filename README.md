@@ -28,7 +28,7 @@
 
   ## Usage
 
-  Once dependencies and database is installed, run ```node server.js``` in the terminal and click on the link provided. You can also visit the site directly by using the link:  https://teagrinforde.github.io/Lets-Tech-About-it-MVC-Blog-V14.0.1/
+  Once dependencies and database is installed, run ```node server.js``` in the terminal and click on the link provided. You can also visit the site directly by using the link:  https://teagrinforde.github.io/Lets-Tech-About-it-MVC-Blog-V14.0.1/ or deployed in heroku at https://aqueous-dawn-74635.herokuapp.com/ .
 
   ## Contribution Guidelines
 
